@@ -47,9 +47,13 @@ class MainActivity : ComponentActivity() {
                         )
                         CanvasControls(
                             selectedColor = state.selectedColor,
+                            selectedThickness = state.selectedThickness,
                             colors = colors,
                             onSelectColor = {
                                 viewModel.onAction(DrawingAction.OnSelectColor(it))
+                            },
+                            onSelectThickness = {
+                                viewModel.onAction(DrawingAction.OnSelectThickness(it))
                             },
                             onClearCanvas = {
                                 viewModel.onAction(DrawingAction.OnClearCanvasClick)

@@ -21,6 +21,15 @@ class DrawingViewModel : ViewModel() {
             DrawingAction.OnNewPathStart -> onNewPathStart()
             DrawingAction.OnPathEnd -> onPathEnd()
             is DrawingAction.OnSelectColor -> onSelectColor(action.color)
+            is DrawingAction.OnSelectThickness -> onSelectThickness(action.thickness)
+        }
+    }
+
+    private fun onSelectThickness(thickness: Float) {
+        _state.update {
+            it.copy(
+                selectedThickness = thickness
+            )
         }
     }
 
@@ -48,7 +57,8 @@ class DrawingViewModel : ViewModel() {
                 currentPath = PathData(
                     id = System.currentTimeMillis(),
                     color = it.selectedColor,
-                    path = emptyList()
+                    path = emptyList(),
+                    thickness = it.selectedThickness
                 )
             )
         }

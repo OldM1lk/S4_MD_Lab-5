@@ -50,13 +50,15 @@ fun DrawingScreen(
         paths.fastForEach { pathData ->
             drawPath(
                 path = pathData.path,
-                color = pathData.color
+                color = pathData.color,
+                thickness = pathData.thickness
             )
         }
         currentPath?.let {
             drawPath(
                 path = it.path,
-                color = it.color
+                color = it.color,
+                thickness = it.thickness
             )
         }
     }
@@ -65,7 +67,7 @@ fun DrawingScreen(
 private fun DrawScope.drawPath(
     path: List<Offset>,
     color: Color,
-    thickness: Float = 10f
+    thickness: Float
 ) {
     val smoothedPath = Path().apply {
         if (path.isNotEmpty()) {
