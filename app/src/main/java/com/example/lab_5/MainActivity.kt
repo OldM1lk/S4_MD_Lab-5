@@ -53,7 +53,8 @@ class MainActivity : ComponentActivity() {
                             },
                             onClearCanvas = {
                                 viewModel.onAction(DrawingAction.OnClearCanvasClick)
-                            })
+                            }
+                        )
                     }
                 }
             }
