@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                         DrawingScreen(
                             paths = state.paths,
                             currentPath = state.currentPath,
-                            onAction = viewModel::onAction,
+                            onAction = viewModel::onDrawingAction,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .weight(1f)
@@ -50,13 +50,13 @@ class MainActivity : ComponentActivity() {
                             selectedThickness = state.selectedThickness,
                             colors = colors,
                             onSelectColor = {
-                                viewModel.onAction(DrawingAction.OnSelectColor(it))
+                                viewModel.onDrawingAction(DrawingAction.OnSelectColor(it))
                             },
                             onSelectThickness = {
-                                viewModel.onAction(DrawingAction.OnSelectThickness(it))
+                                viewModel.onDrawingAction(DrawingAction.OnSelectThickness(it))
                             },
                             onClearCanvas = {
-                                viewModel.onAction(DrawingAction.OnClearCanvasClick)
+                                viewModel.onDrawingAction(DrawingAction.OnClearCanvasClick)
                             }
                         )
                     }

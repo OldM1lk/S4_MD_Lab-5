@@ -1,10 +1,14 @@
 package com.example.lab_5.ui.screens
 
+import android.content.Context
+import android.graphics.Bitmap
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.lifecycle.ViewModel
 import com.example.lab_5.data.DrawingAction
 import com.example.lab_5.data.DrawingState
+import com.example.lab_5.data.ImageAction
 import com.example.lab_5.data.PathData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,7 +18,7 @@ class DrawingViewModel : ViewModel() {
     private val _state = MutableStateFlow(DrawingState())
     val state = _state.asStateFlow()
 
-    fun onAction(action: DrawingAction) {
+    fun onDrawingAction(action: DrawingAction) {
         when (action) {
             DrawingAction.OnClearCanvasClick -> onClearCanvasClick()
             is DrawingAction.OnDraw -> onDraw(action.offset)
@@ -22,6 +26,15 @@ class DrawingViewModel : ViewModel() {
             DrawingAction.OnPathEnd -> onPathEnd()
             is DrawingAction.OnSelectColor -> onSelectColor(action.color)
             is DrawingAction.OnSelectThickness -> onSelectThickness(action.thickness)
+            is DrawingAction.OnSetBackgroundImage -> onSetBackgroundImage(action.image)
+        }
+    }
+
+    private fun onSetBackgroundImage(image: ImageBitmap) {
+        _state.update {
+            it.copy(
+                backgroundImage = image
+            )
         }
     }
 
@@ -82,5 +95,20 @@ class DrawingViewModel : ViewModel() {
                 paths = emptyList()
             )
         }
+    }
+
+    fun onImageAction(action: ImageAction) {
+        when(action) {
+            is ImageAction.OnLoadImage -> onLoadImage(action.image)
+            is ImageAction.OnSaveImage -> onSaveImage(action.bitmap, action.context)
+        }
+    }
+
+    private fun onSaveImage(bitmap: Bitmap, context: Context) {
+
+    }
+
+    private fun onLoadImage(image: ImageBitmap) {
+
     }
 }
