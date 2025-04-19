@@ -30,6 +30,8 @@ fun CanvasControls(
     onSelectColor: (Color) -> Unit,
     onSelectThickness: (Float) -> Unit,
     onClearCanvas: () -> Unit,
+    onLoadClick: () -> Unit,
+    onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Slider(
@@ -73,9 +75,24 @@ fun CanvasControls(
             )
         }
     }
-    Button(
-        onClick = onClearCanvas
-    ) {
-        Text("Очистить")
+    Row {
+        Button(
+            onClick = onLoadClick,
+            modifier = modifier.padding(4.dp)
+        ) {
+            Text("Загрузить")
+        }
+        Button(
+            onClick = onClearCanvas,
+            modifier = modifier.padding(4.dp)
+        ) {
+            Text("Очистить")
+        }
+        Button(
+            onClick = onSaveClick,
+            modifier = modifier.padding(4.dp)
+        ) {
+            Text("Сохранить")
+        }
     }
 }

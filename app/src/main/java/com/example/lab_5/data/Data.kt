@@ -38,7 +38,6 @@ sealed interface DrawingAction {
     data class OnSelectColor(val color: Color) : DrawingAction
     data object OnClearCanvasClick : DrawingAction
     data class OnSelectThickness(val thickness: Float) : DrawingAction
-    data class OnSetBackgroundImage(val image: ImageBitmap) : DrawingAction
 }
 
 sealed interface ImageAction {

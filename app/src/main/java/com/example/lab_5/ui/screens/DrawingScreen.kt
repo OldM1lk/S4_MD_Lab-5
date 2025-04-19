@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
@@ -23,6 +24,7 @@ import kotlin.math.abs
 fun DrawingScreen(
     paths: List<PathData>,
     currentPath: PathData?,
+    backgroundImage: ImageBitmap?,
     onAction: (DrawingAction) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -47,6 +49,9 @@ fun DrawingScreen(
                 )
             }
     ) {
+        backgroundImage?.let {
+            drawImage(it)
+        }
         paths.fastForEach { pathData ->
             drawPath(
                 path = pathData.path,
